@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <div class="card">
-            <h1>House Price Predictor</h1>
+            <h1>House Price Predictor (INR)</h1>
             <form action="/predict" method="POST" class="form">
                 <div class="form-row">
                     <label for="area">Area (sq ft)</label>
@@ -27,11 +27,15 @@
                     <label for="location">Location</label>
                     <select id="location" name="location" required>
                         <option value="">Select location</option>
-                        <option>Springfield</option>
-                        <option>Riverside</option>
-                        <option>Greenville</option>
-                        <option>Hill Valley</option>
-                        <option>Shelbyville</option>
+                        <option>Mumbai</option>
+                        <option>Delhi</option>
+                        <option>Bengaluru</option>
+                        <option>Hyderabad</option>
+                        <option>Chennai</option>
+                        <option>Pune</option>
+                        <option>Kolkata</option>
+                        <option>Ahmedabad</option>
+                        <option>Jaipur</option>
                     </select>
                 </div>
                 <div class="form-row">
@@ -41,7 +45,10 @@
                 <button type="submit" class="btn">Predict</button>
             </form>
             <div class="result">
-                <p id="price">${{ price if price is not none else '---' }}</p>
+                <p id="price">₹{{ '{:,.0f}'.format(price) if price is not none else '---' }}</p>
+                {% if error %}
+                <p style="color:#b91c1c; font-weight:600;">{{ error }}</p>
+                {% endif %}
             </div>
         </div>
     </div>
