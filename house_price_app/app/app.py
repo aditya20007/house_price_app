@@ -21,7 +21,21 @@ try:
 except Exception as e:
     print("Failed to load model:", e)
     traceback.print_exc()
-    model = None
+    try:
+        auto_train = os.getenv("AUTO_TRAIN", "1") == "1"
+        if auto_train:
+            from src.preprocess import ensure_raw, clean_save
+            from src.train import main as train_main
+            ensure_raw(force=False, country=os.getenv("COUNTRY", "IN"))
+            clean_save()
+            train_main()
+            model = load_model()
+        else:
+            model = None
+    except Exception as ee:
+        print("Auto-train failed:", ee)
+        traceback.print_exc()
+        model = None
 
 @app.route("/")
 def index():
