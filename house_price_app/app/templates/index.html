@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>House Price Predictor</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>House Price Predictor</h1>
+            <form action="/predict" method="POST" class="form">
+                <div class="form-row">
+                    <label for="area">Area (sq ft)</label>
+                    <input type="number" id="area" name="area" placeholder="e.g., 1800" step="0.01" required />
+                </div>
+                <div class="form-row">
+                    <label for="bedrooms">Bedrooms</label>
+                    <input type="number" id="bedrooms" name="bedrooms" placeholder="e.g., 3" required />
+                </div>
+                <div class="form-row">
+                    <label for="bathrooms">Bathrooms</label>
+                    <input type="number" id="bathrooms" name="bathrooms" placeholder="e.g., 2" required />
+                </div>
+                <div class="form-row">
+                    <label for="location">Location</label>
+                    <select id="location" name="location" required>
+                        <option value="">Select location</option>
+                        <option>Springfield</option>
+                        <option>Riverside</option>
+                        <option>Greenville</option>
+                        <option>Hill Valley</option>
+                        <option>Shelbyville</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="year_built">Year Built</label>
+                    <input type="number" id="year_built" name="year_built" placeholder="e.g., 2005" required />
+                </div>
+                <button type="submit" class="btn">Predict</button>
+            </form>
+            <div class="result">
+                <p id="price">${{ price if price is not none else '---' }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
