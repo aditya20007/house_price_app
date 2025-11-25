@@ -1,15 +1,153 @@
-* { box-sizing: border-box; }
-body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; background: #f5f7fb; color: #1f2937; }
-.container { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
-.card { width: 100%; max-width: 520px; background: #fff; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 24px; }
-h1 { margin: 0 0 16px; font-size: 24px; text-align: center; }
-.form { display: grid; gap: 14px; }
-.form-row { display: grid; gap: 6px; }
-label { font-size: 14px; color: #374151; }
-input, select { width: 100%; padding: 12px 14px; border: 1px solid #e5e7eb; border-radius: 10px; outline: none; background: #f9fafb; transition: border-color .2s, box-shadow .2s; }
-input:focus, select:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.15); background: #fff; }
-.btn { width: 100%; padding: 12px 14px; border: none; border-radius: 10px; background: #2563eb; color: #fff; font-weight: 600; cursor: pointer; transition: background .2s, transform .05s; }
-.btn:hover { background: #1d4ed8; }
-.btn:active { transform: translateY(1px); }
-.result { margin-top: 12px; text-align: center; font-size: 20px; font-weight: 700; color: #111827; }
-@media (max-width: 520px) { .card { padding: 18px; } }
+* {
+    box-sizing: border-box;
+}
+
+/* Fade & Slide Card Animation */
+@keyframes cardIn {
+    0% {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    background: linear-gradient(135deg, #e8efff, #f5f7fb);
+    color: #1f2937;
+}
+
+/* Page Centering */
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+/* Card Styling */
+.card {
+    width: 100%;
+    max-width: 520px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    padding: 24px;
+    animation: cardIn .6s ease forwards;
+}
+
+h1 {
+    margin: 0 0 16px;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Form Layout */
+.form {
+    display: grid;
+    gap: 14px;
+}
+
+.form-row {
+    display: grid;
+    gap: 6px;
+}
+
+label {
+    font-size: 14px;
+    color: #374151;
+}
+
+/* Input and Select */
+input, select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    outline: none;
+    background: #f9fafb;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+
+/* Input Focus Animation */
+input:focus,
+select:focus {
+    border-color: #3b82f6;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+    transform: scale(1.01);
+}
+
+/* Button */
+.btn {
+    width: 100%;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background .2s, transform .08s;
+}
+
+/* Hover */
+.btn:hover {
+    background: #1d4ed8;
+}
+
+/* Click Effect */
+.btn:active {
+    transform: scale(0.97);
+}
+
+/* Button Ripple Animation */
+.btn::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(1);
+    animation: none;
+}
+
+.btn:active::after {
+    animation: ripple .5s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(25);
+    }
+}
+
+/* Result Text */
+.result {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+    .card {
+        padding: 18px;
+    }
+}
